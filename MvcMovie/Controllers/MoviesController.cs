@@ -19,10 +19,10 @@ namespace MvcMovie.Controllers
         {
            _context = new MovieContext();
         }
-
-        // GET: Movies
+                
+        // GET: Movies        
         public async Task<IActionResult> Index(string movieGenre, string searchString)
-        {
+        {            
             // Use LINQ to get list of genres.
             var genreQuery = (from m in _context.Movies
                                             orderby m.Genre
@@ -45,10 +45,12 @@ namespace MvcMovie.Controllers
             {
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
                 Movies = await movies.ToListAsync()
-            };
+            };            
 
-            return View(movieGenreVM);
+            return View(movieGenreVM);            
+
         }
+
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -8,6 +8,8 @@ namespace Persistencia.Entidades
     public class Movie
     {
         [Display(Name = "Movie ID")]
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public int MovieId { get; set; }
 
         public string Title { get; set; }
@@ -20,6 +22,9 @@ namespace Persistencia.Entidades
     
         public double Rating { get; set; }
 
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [Required]
+        [StringLength(30)]
         public String Genre { get; set; }
         public virtual Genre GenreID { get; set; }
 
